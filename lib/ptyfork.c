@@ -21,10 +21,6 @@
  * ---> get and set terminal attributes, line control, get and set baud rate
  *
  */
-
-
-
-
 pid_t
 pty_fork(int *ptrfdm, char *slave_name, int slave_namesz,
          const struct termios *slave_termios,
