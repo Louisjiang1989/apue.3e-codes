@@ -1,5 +1,5 @@
 ROOT=..
-PLATFORM=$(shell $(ROOT)/systype.sh)
+PLATFORM=$(sh $(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
 
 PROGS = strftime

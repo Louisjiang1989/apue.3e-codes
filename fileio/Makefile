@@ -1,5 +1,5 @@
 ROOT=..
-PLATFORM=$(shell S(ROOT)/systype.sh)
+PLATFORM=$(sh S(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
 
 PROGS = fileflags hole mycat seek
