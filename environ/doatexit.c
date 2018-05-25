@@ -1,7 +1,7 @@
 #include "apue.h"
 
 static void my_exit1(void);
-static void mu_exit2(void);
+static void my_exit2(void);
 
 int
 main(void)

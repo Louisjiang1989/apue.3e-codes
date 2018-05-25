@@ -1,5 +1,7 @@
 #include "apue.h"
 #include <fcntl.h>
+#include <string.h>
+#include <errno.h>
 
 int
 main(int argc, char *argv[])
@@ -9,8 +11,14 @@ main(int argc, char *argv[])
     if (argc != 2)
         err_quit("usage: a.out <descriptor#>");
 
-    if ((val = fcntl(atoi(argv[1]), F_GETFL, 0)) < 0)
-        err_sys("fcntl error for fd %d", atoi(argv[1]));
+    if(chdir("/home/louis/apue/apue.3e-codes/fileio") != 0) {
+    	err_quit("chdir error %s\n", strerror(errno));
+    }    
+
+    int fd = open("./file", O_RDWR | O_APPEND);
+
+    if ((val = fcntl(fd, F_GETFL, 0)) < 0)
+        err_sys("fcntl error for fd %d", fd);
 
     switch (val & O_ACCMODE) {
         case O_RDONLY:

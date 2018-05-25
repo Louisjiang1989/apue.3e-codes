@@ -19,8 +19,12 @@ main(int argc, char *argv[])
             err_ret("%s: open error", argv[i]);
             continue;
         }
-        times[0] = statbuf.st_atim;
-        times[1] = statbuf.st_mtim;
+        /*times[0] = statbuf.st_atim;
+        times[1] = statbuf.st_mtim;*/
+	struct timespec newtime1 = {0, 0};
+	struct timespec newtime2 = {1527230498, 0};
+	times[0] = newtime1;
+	times[1] = newtime2;
         /*
          * futimes, lutimes ---- change file timestamps
          */ 

@@ -1,10 +1,10 @@
 ROOT=..
-PLATFORM=$(sh $(ROOT)/systype.sh)
+PLATFORM=$(shell $(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
 
 PROGS = doatexit echoarg getrlimit testjmp
 
-all:    $(PROGS) opendata.0 scope.0
+all:    $(PROGS) opendata.o scope.o
 
 $(PROGS):   $(LIBAPUE)
 	    $(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS) $(LDLIBS)

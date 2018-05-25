@@ -40,7 +40,7 @@ tty_cbreak(int fd)  /* put terminal into a cbreak mode */
      */
     if (tcgetattr(fd, &buf) < 0) {
         err = errno;
-        tcsetattr(fd, TCSEFLUSH, &save_termios);
+        tcsetattr(fd, TCSAFLUSH, &save_termios);
         errno = err;
         return (-1);
     }
@@ -53,7 +53,7 @@ tty_cbreak(int fd)  /* put terminal into a cbreak mode */
         errno = EINVAL;
         return (-1);
     }
-    ttystat = CBREAK;
+    ttystate = CBREAK;
     ttysavefd = fd;
     return (0);
 }
@@ -121,9 +121,9 @@ tty_raw(int fd)  /* put terminal into a raw mode */
         errno = err;
         return (-1);
     }
-    if ((buf.c_lflag & (ECHO | ICANNON | IEXTEN | ISIG)) ||
+    if ((buf.c_lflag & (ECHO | ICANON | IEXTEN | ISIG)) ||
         (buf.c_iflag & (BRKINT | ICRNL | INPCK | ISTRIP | IXON)) ||
-        (buf.c_cflag & (CSIZE | PAREND | CS8)) != CS8 ||
+        (buf.c_cflag & (CSIZE | PARENB | CS8)) != CS8 ||
         (buf.c_oflag & OPOST) || buf.c_cc[VMIN] != 1 ||
         buf.c_cc[VTIME] != 0) {
         /* Only some of the changes were made. Restore the original settings.

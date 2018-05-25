@@ -14,12 +14,10 @@ static long nreg, ndir, nblk, nchr, nfifo, nslink, nsock, ntot;
 int
 main(int argc, char *argv[])
 {
-    int ret;
-
     if (argc != 2)
         err_quit("usage: ftw <starting-pathname>");
 
-    ret = myftw(argv[1], myfunc);  /* does it all */
+    myftw(argv[1], myfunc);  /* does it all */
 
     ntot = nreg + ndir + nblk + nchr + nfifo + nslink + nsock;
     if (ntot == 0)
@@ -102,7 +100,7 @@ dopath(Myfunc *func)
 
     while ((dirp = readdir(dp)) != NULL) {
         if (strcmp(dirp->d_name, ".") == 0 ||
-            strcmp(dirp->d_name, ".." == 0)
+            strcmp(dirp->d_name, "..") == 0)
             continue;    /* ignore dot and dot-dot */
 
             strcpy(&fullpath[n], dirp->d_name);  /* append name after */

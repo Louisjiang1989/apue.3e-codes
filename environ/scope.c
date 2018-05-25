@@ -10,5 +10,5 @@ f1(int val)
         val = 5;
         ptr = &val;
     }
-    return (*ptr + 1)
+    return (*ptr + 1);
 }

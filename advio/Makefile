@@ -1,9 +1,9 @@
 ROOT=..
-PLATFORM=$(sh $(ROOT)/systype.sh)
+PLATFORM=$(shell $(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
 
 ifeq "$(PLATFORM)" "linux"
-	EXTRALIBS=--lrt
+	EXTRALIBS=-lrt
 endif
 ifeq "$(PLATFORM)" "solaris"
 	EXTRALIBS=-lrt
@@ -21,7 +21,7 @@ rot13c2.c:  rot13c2.c.in $(LIBAPUE)
 	sed '1,/same/d' rot13c2.c.in >>rot13c2.c
 
 $(PROGS):   $(LIBAPUE)
-	    $(CC) $(CFLAGS) $@ $(LDFLAGS) $(LDLIBS)
+	    $(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS) $(LDLIBS)
 
 clean:
 	rm -f $(PROGS) $(MOREPROGS) $(TEMPFILES) *.o xlate rot13c2.c

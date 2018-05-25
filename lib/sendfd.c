@@ -1,3 +1,10 @@
+#include "apue.h"
+#include <sys/socket.h>
+
+#define CONTROLLEN CMSG_LEN(sizeof(int))
+
+static struct cmsghdr *cmptr = NULL;
+
 /* 
  * Pass a file discriptor t another process.
  * If fd<0, then -fd is sent back instead as the the error status.
@@ -18,7 +25,7 @@ send_fd(int fd, int fd_to_send)
 
     if (fd_to_send < 0) {
         msg.msg_control = NULL;
-        msg.msg_contrllen = 0;
+        msg.msg_controllen = 0;
         buf[1] = -fd_to_send;   /* nonzero status means error */
 
         if (buf[1] == 0) {
@@ -26,7 +33,7 @@ send_fd(int fd, int fd_to_send)
         } 
     } else {
             if (cmptr == NULL && (cmptr = malloc(CONTROLLEN)) == NULL) {
-                return (-1);
+                return(-1);
             }
             cmptr->cmsg_level = SOL_SOCKET;
             cmptr->cmsg_type = SCM_RIGHTS;

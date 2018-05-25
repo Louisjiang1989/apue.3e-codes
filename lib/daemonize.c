@@ -28,7 +28,7 @@ daemonize(const char *cmd)
 
     /* Become a session leader to lose controlling TTY.
      */
-    if ((pid == for()) < 0) {
+    if ((pid = fork()) < 0) {
         err_quit("%s: can't fork", cmd);
     } else if (pid != 0){  /* parent */
         exit(0);

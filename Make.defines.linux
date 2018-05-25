@@ -12,7 +12,7 @@ CFLAGS=-ansi -I$(ROOT)/include -Wall -DLINUX -D_GNU_SOURCE $(EXTRA)
 RANLIB=echo
 AR=ar
 AWK=awk
-LIBAPUSE=$(ROOT)/lib/libapue.a
+LIBAPUE=$(ROOT)/lib/libapue.a
 
 #Common temp files to delete from each directory
 TEMPFILES=core core.* *.o temp.* *.out

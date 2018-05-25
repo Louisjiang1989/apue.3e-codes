@@ -3,7 +3,7 @@
 
 ROOT=..
 PLATFORM=$(sh $(ROOT)/systype.sh)
-include $(ROOT)/Make.defines.$(PLATFORM)
+include $(ROOT)/Make.defines.linux
 
 LIBMISC = libapue.a
 OBJS = bufargs.o cliconn.o clrfl.o \

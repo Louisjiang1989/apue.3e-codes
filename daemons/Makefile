@@ -1,5 +1,5 @@
 ROOT=..
-PLATFORM=$(sh $(ROOT)/systype.sh)
+PLATFORM=$(shell $(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
 
 all:   init.o reread.o reread2.o single.o

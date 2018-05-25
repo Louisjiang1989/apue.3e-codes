@@ -47,7 +47,7 @@ static void
 f1(int i, int j, int k, int l)
 {
     printf("int f1(): \n");
-    printf("globval = %s, autoval = %d, regival = %d,"
+    printf("globval = %d, autoval = %d, regival = %d,"
             " volaval = %d, statval = %d\n", globval, i, j, k, l);
     f2();
 }

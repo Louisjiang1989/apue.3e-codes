@@ -5,7 +5,7 @@
 #define COPYINCR (1024*1024*1024)  /* 1 GB */
 
 int 
-main(int argc, char *argvp[])
+main(int argc, char *argv[])
 {
     int     fdin, fdout;
     void    *src, *dst;
@@ -39,10 +39,10 @@ main(int argc, char *argvp[])
             copysz = sbuf.st_size - fsz;
         }
 
-        if ((src = mmap(0, copysz, PORT_READ, MAP_SHARED, fdin, fsz)) == MAP_FAILED) {
+        if ((src = mmap(0, copysz, PROT_READ, MAP_SHARED, fdin, fsz)) == MAP_FAILED) {
             err_sys("mmap error for input");
         }
-        if ((dst = mmap(0, copysz, PORT_READ | PROT_WRITE, MAP_SHARED, fout, fsz)) == MAP_FAILED) {
+        if ((dst = mmap(0, copysz, PROT_READ | PROT_WRITE, MAP_SHARED, fdout, fsz)) == MAP_FAILED) {
             err_sys("mmap error for output");
         }
 

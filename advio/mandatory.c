@@ -51,7 +51,7 @@ main(int argc, char *argv[])
         set_fl(fd, O_NONBLOCK);
 
         /* first let's see what error we get if region is locked */
-        if (read_lock(fd, 0, SEEK_SET) != -1) {/* no wait */
+        if (read_lock(fd, 0, SEEK_SET, 0) != -1) {/* no wait */
             err_sys("child: read_lock successed");
         }
         printf("read_lock of already-locked region returns %d\n", errno);

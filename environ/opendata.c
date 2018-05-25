@@ -16,7 +16,7 @@ open_data(void)
      * function. The primary use of the freopen() function is to change the file assiciated with a standard text stream 
      * (stderr, stdin, or stdout).
      */
-    if ((fp = fopen("datafile", "r")) == MULL)
+    if ((fp = fopen("datafile", "r")) == NULL)
         return NULL;
 
     /* 

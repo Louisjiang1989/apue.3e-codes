@@ -43,7 +43,7 @@ main(int argc, char *argv[])
     if ((ifd = open(argv[1], O_RDONLY)) < 0) {
         err_sys("can't open %s", argv[1]);
     }
-    if ((ofd = oen(argv[2], O_RDWR | O_CREATE | O_TRUNC, FILE_MODE)) < 0) {
+    if ((ofd = open(argv[2], O_RDWR | O_CREAT | O_TRUNC, FILE_MODE)) < 0) {
         err_sys("can't create %s", argv[2]);
     }
     if (fstat(ifd, &sbuf) < 0) {
@@ -74,7 +74,7 @@ main(int argc, char *argv[])
                         if (off >= sbuf.st_size) {
                             bufs[i].last = 1;
                         }
-                        bufs[i].aiocb_nbytes = BSZ;
+                        bufs[i].aiocb.aio_nbytes = BSZ;
                         if (aio_read(&bufs[i].aiocb) < 0) {
                             err_sys("aio_read failed");
                         }
@@ -107,7 +107,7 @@ main(int argc, char *argv[])
                         bufs[i].data[j] = translate(bufs[i].data[j]);
                     }
                     bufs[i].op = WRITE_PENDING;
-                    bufs[i].aiocb.aio_filds = ofd;
+                    bufs[i].aiocb.aio_fildes = ofd;
                     bufs[i].aiocb.aio_nbytes = n;
                     if (aio_write(&bufs[i].aiocb) < 0) {
                         err_sys("aio_write failed");

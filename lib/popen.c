@@ -41,10 +41,13 @@ static pid_t *childpid = NULL;
  * event of an error, these function set errno to indicate the cause of the error.
  */
 
+static int maxfd;
+
 FILE* 
 popen(const char *cmdstring, const char *type)
 {
-    
+    int i;
+    FILE *fp; 
     int pfd[2];
     pid_t pid;
     /* only allow "r" or "w" */

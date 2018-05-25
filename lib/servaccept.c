@@ -48,7 +48,7 @@ serv_accept(int listenfd, uid_t *uidptr)
 #endif
 
     if ((statbuf.st_mode & (S_IRWXG | S_IRWXO)) ||
-            (statuf.st_mode & S_IRWXU) != S_IRWXU) {
+            (statbuf.st_mode & S_IRWXU) != S_IRWXU) {
         rval = -5;   /* is not rwx------ */
         goto errout;
     }

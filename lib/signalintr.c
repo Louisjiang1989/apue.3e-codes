@@ -7,7 +7,7 @@ singal_intr(int signo, Sigfunc *func)
 
     act.sa_handler = func;
     sigemptyset(&act.sa_mask);
-    act.sa_mask = 0;
+    act.sa_flags = 0;
 #ifdef SA_INTERRUPT
     act.sa_flags |= SA_INTERRUPT;
 #endif

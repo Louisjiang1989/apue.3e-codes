@@ -107,7 +107,7 @@ err_quit(const char *fmt, ...)
  * Caller specifies "errnoflag"
  */
 static void 
-err_doit(int errnoflag, int errno, const char *fmt, va_list ap)
+err_doit(int errnoflag, int error, const char *fmt, va_list ap)
 {
     char buf[MAXLINE];
 

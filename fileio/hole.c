@@ -24,5 +24,13 @@ main(void)
         err_sys("buf2 write error");
     /* offset now = 16394 */
 
+    FILE *fp = fdopen(fd, "w");
+    if(fp == NULL) {
+    	err_sys("fdopen error");
+    }
+
+    long offset = ftell(fp);
+    printf("file current offset: %ld\n", offset);
+
     exit(0);
 }

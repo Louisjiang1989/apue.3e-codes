@@ -29,10 +29,29 @@ getpwnam(const char *name)
      * };
      */
     setpwent();
-    while ((ptr == getpwent()) != NULL) {
+    while ((ptr = getpwent()) != NULL) {
         if (strcmp(name, ptr->pw_name) ==0)
             break;    /* found a  match */
     }
     endpwent();
     return ptr;  /* ptr is NULL if no match found */
 }
+
+/*int main()
+{
+	struct passwd *pwd = getpwnam("root");
+	if(pwd == NULL){
+		printf("main passwd is NULL\n");
+		exit(-1);
+	}
+
+	printf("pw_name: %s\n", pwd->pw_name);
+	printf("pw_passwd: %s\n", pwd->pw_passwd);
+	printf("pw_uid: %d\n", pwd->pw_uid);
+	printf("pw_gid: %d\n", pwd->pw_gid);
+	printf("pw_gecos: %s\n", pwd->pw_gecos);
+	printf("pw_dir: %s\n", pwd->pw_dir);
+	printf("pw_shell: %s\n", pwd->pw_shell);
+	
+	return 0;
+}*/

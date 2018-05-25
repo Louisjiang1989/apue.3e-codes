@@ -1,5 +1,5 @@
 ROOT=..
-PLATFORM=$(sh $(ROOT)/systype.sh)
+PLATFORM=$(shell $(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
 
 ifeq "$(PLATFORM)" "linux"
