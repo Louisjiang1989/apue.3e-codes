@@ -1,0 +1,35 @@
+UNUSED case
+numop ++ start
+numop -- over
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+out of NBUF
+numop: 1
+READ_PENDING case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+out of NBUF
+numop: 1
+WRITE_PENDING case
+numop -- start
+numop -- over
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+UNUSED case
+out of NBUF
+numop == 0
+offset: 4096, st.st_size: 12

@@ -32,6 +32,8 @@ main(int argc, char *argv[])
 
     TELL_WAIT();
 
+    sleep(100);
+
     if ((pid = fork()) < 0) {
         err_sys("fork error");
     } else if (pid > 0) { /* parent */

@@ -11,8 +11,9 @@ main(void)
     tmpnam(name);                              //second temp name
     printf("%s\n", name);
 
-    if ((fp = tmpfile() == NULL))               // create temp file
+    if ((fp = tmpfile()) == NULL)               // create temp file
         err_sys("tmpfile error");
+
     fputs("one line of output\n", fp);           // write to temp file
     rewind(fp);                                 // move the fp pos pointer tp the SEEK_SET
     if (fgets(line, sizeof(line), fp) == NULL)  // then read it back
