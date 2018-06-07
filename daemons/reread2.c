@@ -44,7 +44,7 @@ main(int argc, char *argv[])
     /*
      * Make sure only one copy of the daemon is running.
      */ 
-    if (alreading_running()) {
+    if (already_running()) {
         syslog(LOG_ERR, "daemon already running");
         exit(1);
     }

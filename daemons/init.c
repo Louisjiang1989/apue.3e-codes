@@ -28,11 +28,15 @@ daemonize(const char *cmd)
 
     /* Become a session leader to lose controlling TTY.
      */
-    if ((pid == fork()) < 0) {
+    if ((pid = fork()) < 0) {
         err_quit("%s: can't fork", cmd);
     } else if (pid != 0){  /* parent */
+	printf("the parent process\n");
         exit(0);
     }
+
+    printf("the child process\n");
+
     setsid();
 
     /*
@@ -47,8 +51,11 @@ daemonize(const char *cmd)
     if ((pid = fork()) < 0) {
         err_quit("%s: can't fork", cmd);
     } else if (pid != 0) {   /* parent */
+	printf("child parent process\n");
         exit(0);
     }
+
+    printf("child child process\n");
 
     /* 
      * Change the current working directory to the root so we won't
@@ -79,7 +86,9 @@ daemonize(const char *cmd)
      */
     openlog(cmd, LOG_CONS, LOG_DAEMON);
     if (fd0 != 0 || fd1 != 1 || fd2 != 2) {
+	printf("child child process exit\n");
         syslog(LOG_ERR, "unexpected file descriptors %d %d %d", fd0, fd1, fd2);
         exit(1);
     }
+    return;
 }

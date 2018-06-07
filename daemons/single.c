@@ -15,6 +15,7 @@ extern int lockfile(int);
 int
 already_running(void)
 {
+    syslog(LOG_INFO, "already_running.....");
     int fd;
     char buf[16];
 
@@ -25,6 +26,7 @@ already_running(void)
     }
     if (lockfile(fd) < 0) {
         if (errno == EACCES || errno == EAGAIN) {
+	    syslog(LOG_ERR, "errno %d error %s", errno, strerror(errno));
             close(fd);
             return 1;
         }

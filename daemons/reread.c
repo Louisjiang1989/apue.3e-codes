@@ -18,6 +18,7 @@ thr_fn(void *arg)
     int err, signo;
 
     for (;;) {
+	syslog(LOG_INFO, "hello louis");
         /*
          * sigwait --- wait for a signal
          */
@@ -45,12 +46,14 @@ thr_fn(void *arg)
 int 
 main(int argc, char *argv[])
 {
+    printf("bbbbbbbbbbbbbbbbb\n");
+    syslog(LOG_ERR, "hello louis");
     int err;
     pthread_t tid;
     char *cmd;
     struct sigaction sa;
 
-    if ((cmd == strrchr(argv[0], '/')) == NULL)
+    if ((cmd = strrchr(argv[0], '/')) == NULL)
         cmd = argv[0];
     else 
         cmd++;
@@ -59,6 +62,8 @@ main(int argc, char *argv[])
      * Become a daemon
      */
     daemonize(cmd);
+
+    syslog(LOG_INFO, "cccccccccccc");
 
     /* 
      * Make sure only one copy of the daemon is running.
@@ -108,5 +113,7 @@ main(int argc, char *argv[])
      * Proceed with the rest of the daemon.
      */
     /* ... */
+    pthread_join(tid, NULL);
+    syslog(LOG_INFO, "aaaaaaaaaaaaaaaaaa");
     exit(0);
 }

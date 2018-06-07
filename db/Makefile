@@ -23,14 +23,14 @@ endif
 
 all:  libapue_db.so.1 t4 $(LIBMISC)
 
-libapue_db.a:   S(COMM_OBJ) $(LIBMISC)
+libapue_db.a:   $(COMM_OBJ) $(LIBMISC)
 	$(AR) rsv $(LIBMISC) $(COMM_OBJ)
 	$(RANLIB) $(LIBMISC)
 
 libapue_db.so.1:	db.c $(LIBAPUE)
 	$(CC) -fPIC $(CFLAGS) -c db.c
 	$(LDCMD)
-	ln -s libapue_db.so.1 libapue_db.so 
+	cp libapue_db.so.1 libapue_db.so 
 
 t4:	$(LIBAPUE)
 	$(CC) $(CFLAGS) -c -I. t4.c
